@@ -99,6 +99,12 @@ STATIC_URL = "static/"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+if os.getenv("VERCEL"):
+    STORAGES = {
+        "default": {"BACKEND": "detection.storage.VercelBlobStorage"},
+        "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+    }
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # --- DRF ---
