@@ -1,0 +1,41 @@
+{
+  "classes": [
+    "blast",
+    "blight",
+    "brown_spot",
+    "healthy",
+    "scald",
+    "tungro",
+    "not_rice"
+  ],
+  "idx_to_label": {
+    "0": "blast",
+    "1": "blight",
+    "2": "brown_spot",
+    "3": "healthy",
+    "4": "scald",
+    "5": "tungro",
+    "6": "not_rice"
+  },
+  "label_to_idx": {
+    "blast": 0,
+    "blight": 1,
+    "brown_spot": 2,
+    "healthy": 3,
+    "scald": 4,
+    "tungro": 5,
+    "not_rice": 6
+  },
+  "reject_labels": [
+    "not_rice"
+  ],
+  "display_name": {
+    "blast": "Blast (Blas)",
+    "blight": "Bacterial Leaf Blight (Hawar Daun Bakteri)",
+    "brown_spot": "Brown Spot (Bercak Coklat)",
+    "healthy": "Sehat",
+    "scald": "Leaf Scald (Hangus Daun)",
+    "tungro": "Tungro",
+    "not_rice": "Bukan Daun Padi"
+  }
+}

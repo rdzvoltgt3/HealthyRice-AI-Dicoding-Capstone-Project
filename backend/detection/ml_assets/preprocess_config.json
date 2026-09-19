@@ -1,0 +1,58 @@
+{
+  "model_name": "convnextv2_tiny.fcmae_ft_in22k_in1k",
+  "input_size": [
+    3,
+    224,
+    224
+  ],
+  "input_layout": "NCHW",
+  "color_space": "RGB",
+  "resize_shorter_side_to": 257,
+  "center_crop": 224,
+  "rescale": "bagi 255 -> rentang 0..1",
+  "normalize": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "catatan": "model_web.onnx SUDAH menormalisasi di dalam graph; JANGAN normalisasi lagi. model.onnx BUTUH input ternormalisasi."
+  },
+  "output": {
+    "model.onnx": "logits (perlu softmax)",
+    "model_web.onnx": "probabilitas (softmax sudah di dalam)"
+  },
+  "io_names": {
+    "model.onnx": {
+      "input": "input",
+      "output": "logits"
+    },
+    "model_web.onnx": {
+      "input": "input",
+      "output": "probs"
+    }
+  },
+  "ood_gate": {
+    "model": "model_web_logits_int8.onnx",
+    "output": "logits mentah (BELUM softmax)",
+    "energy_threshold": -3.758518695831299,
+    "rumus": "energy = -logsumexp(logits); TOLAK gambar bila energy > energy_threshold",
+    "catatan": "Ambang dikalibrasi pada file INT8 di atas. Jangan dipakai untuk file model lain - kuantisasi menggeser skala logit."
+  },
+  "confidence_threshold": 0.8,
+  "catatan_threshold": "Bila confidence < 0.80, kembalikan status 'uncertain' dan minta pengguna memotret ulang.",
+  "test_metrics": {
+    "accuracy": 0.9767333643555142,
+    "macro_f1": 0.9761982035448186,
+    "macro_precision": 0.9777972197970849,
+    "macro_recall": 0.9747912882377691,
+    "weighted_f1": 0.9767094793985686,
+    "n_test": 2149,
+    "tta_hflip": true
+  }
+}
