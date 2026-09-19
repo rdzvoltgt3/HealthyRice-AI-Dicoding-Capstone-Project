@@ -1,0 +1,73 @@
+/* =========================
+   AUTH PAGES (Login / Register)
+========================= */
+
+.auth-section {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.auth-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.auth-card h1 {
+  margin: 0 0 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.auth-card > p {
+  margin: 0 0 24px;
+  color: #777777;
+  font-size: 13px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #333333;
+}
+
+.auth-form input {
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+.auth-form .primary-button {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.auth-switch {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: #777777;
+}
+
+.auth-switch a {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: underline;
+}
