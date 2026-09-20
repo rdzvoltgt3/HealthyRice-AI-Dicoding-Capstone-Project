@@ -34,7 +34,7 @@ Produktivitas padi di Indonesia masih terancam oleh penyakit daun seperti hawar 
 ## Fitur Utama
 
 - **Deteksi penyakit dari foto**: unggah dari galeri (JPG/JPEG/PNG) atau ambil langsung dengan kamera.
-- **Hasil diagnosis**: nama penyakit, tingkat keyakinan (_confidence_), dan deskripsi singkat.
+- **Hasil diagnosis**: nama penyakit, tingkat keyakinan (confidence), dan deskripsi singkat.
 - **Pengaman hasil**: foto yang bukan daun padi atau yang keyakinannya di bawah 80% tidak diberi diagnosis, dan pengguna diminta memotret ulang.
 - **Informasi & penanganan penyakit**: penyebab, gejala, cara penanganan, pencegahan, dan sumber referensi untuk setiap penyakit.
 - **Riwayat deteksi**: tersimpan per akun, bisa dibuka kembali, difilter, atau dihapus.
@@ -78,24 +78,26 @@ Produktivitas padi di Indonesia masih terancam oleh penyakit daun seperti hawar 
 
 ```
 .
-├── Notebook_HealthyRiceAI.ipynb   # EDA, cleaning, training, evaluasi, export model
-├── backend/                       # Django REST API
-│   ├── api/index.py               # entry point serverless Vercel
-│   ├── config/                    # settings & URL utama
-│   ├── accounts/                  # registrasi, login (JWT), profil
-│   ├── diseases/                  # katalog penyakit + seed data
-│   ├── detection/                 # upload foto, inference, riwayat
-│   │   ├── ml_engine.py           # preprocessing & inference ONNX
-│   │   └── ml_assets/             # model ONNX, labels, config, model card
-│   ├── core/                      # penanganan error API
+├── notebook
+│   ├── Notebook_HealthyRiceAI.ipynb
+├── backend/
+│   ├── api/index.py
+│   ├── config/
+│   ├── accounts/
+│   ├── diseases/
+│   ├── detection/
+│   │   ├── ml_engine.py
+│   │   └── ml_assets/
+│   ├── core/
 │   ├── healthyriceai.postman_collection.json
 │   ├── requirements.txt
 │   └── vercel.json
-└── frontend/                      # React + Vite
+└── frontend/
     ├── src/
-    │   ├── pages/                 # Home, Upload, Result, History, Disease List/Detail, Login, Register
-    │   ├── components/            # layout, kamera, kartu penyakit, section home
-    │   ├── services/              # pemanggilan API (Axios)
-    │   └── context/               # state autentikasi
+    │   ├── pages/
+    │   ├── components/
+    │   ├── services/
+    │   └── context/
     └── vercel.json
+``
 ```
