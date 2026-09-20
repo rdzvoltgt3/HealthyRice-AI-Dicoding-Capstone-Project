@@ -10,10 +10,15 @@ class Disease(models.Model):
 
     slug = models.SlugField(unique=True)  
     name = models.CharField(max_length=100)  
+    scientific_name = models.CharField(max_length=150, blank=True)
     short_description = models.CharField(max_length=255, blank=True)  
+    description = models.TextField(blank=True)  # full "Tentang Penyakit" paragraph(s)
+    cause = models.TextField(blank=True)
     symptoms = models.TextField(blank=True) 
+    details = models.TextField(blank=True)
     treatment_steps = models.TextField(blank=True)  
     prevention_steps = models.TextField(blank=True) 
+    sources = models.JSONField(default=list, blank=True)  # [{"title": ..., "url": ...}, ...]
     risk_level = models.CharField(max_length=10, choices=RiskLevel.choices, default=RiskLevel.MEDIUM)
     image = models.ImageField(upload_to="diseases/", blank=True, null=True)
 

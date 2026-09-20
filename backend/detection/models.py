@@ -11,7 +11,7 @@ def detection_image_path(instance, filename):
 class Detection(models.Model):
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="detections")
-    image = models.ImageField(upload_to=detection_image_path)
+    image = models.ImageField(upload_to=detection_image_path, max_length=500)
     predicted_disease = models.ForeignKey(
         Disease, on_delete=models.PROTECT, related_name="detections", null=True, blank=True
     )

@@ -60,14 +60,12 @@ class DetectionViewSet(viewsets.ModelViewSet):
         except ValidationError as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        detection = serializer.save(
-            user=request.user, predicted_disease_id=None, confidence=0, inference_time_ms=0)
 
-        result = run_inference(detection.image.path)
+        result = run_inference(image_file)
+        image_file.seek(0)  
 
         if result["is_uncertain"]:
-            detection.image.delete(save=False)
-            detection.delete()
+          
             return Response(
                 {
                     "is_uncertain": True,
@@ -81,16 +79,17 @@ class DetectionViewSet(viewsets.ModelViewSet):
         try:
             disease = Disease.objects.get(slug=result["label"])
         except Disease.DoesNotExist:
-            detection.image.delete(save=False)
-            detection.delete()
             return Response(
                 {"error": f"Model returned unknown label '{result['label']}'. Seed the diseases table first."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-        detection.predicted_disease = disease
-        detection.confidence = result["confidence"]
-        detection.inference_time_ms = result["inference_time_ms"]
-        detection.save()
+      
+        detection = serializer.save(
+            user=request.user,
+            predicted_disease=disease,
+            confidence=result["confidence"],
+            inference_time_ms=result["inference_time_ms"],
+        )
 
         return Response(DetectionResultSerializer(detection, context={"request": request}).data, status=201)

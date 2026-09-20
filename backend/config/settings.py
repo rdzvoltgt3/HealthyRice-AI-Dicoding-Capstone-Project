@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
+    "drf_spectacular",
     # local apps
     "accounts",
     "diseases",
@@ -120,6 +121,15 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.MultiPartParser",  
         "rest_framework.parsers.FormParser",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "EXCEPTION_HANDLER": "core.exceptions.custom_exception_handler",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "HealthyRiceAI API",
+    "DESCRIPTION": "REST API for rice leaf disease detection — auth, disease catalog, and ML-backed detection endpoints.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
 
 SIMPLE_JWT = {

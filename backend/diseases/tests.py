@@ -8,7 +8,11 @@ class DiseaseCatalogTests(APITestCase):
     def setUp(self):
         Disease.objects.create(
             slug="tungro", name="Tungro", short_description="Daun menguning.",
-            symptoms="Gejala 1\nGejala 2", treatment_steps="Langkah 1\nLangkah 2",
+            description="Tungro adalah penyakit virus pada padi.",
+            cause="Disebabkan oleh dua virus yang ditularkan wereng hijau.",
+            symptoms="Gejala 1\nGejala 2", details="Detail lengkap penyakit tungro.",
+            treatment_steps="Langkah 1\nLangkah 2", prevention_steps="Cegah 1\nCegah 2",
+            sources=[{"title": "IRRI — Tungro", "url": "http://example.com/tungro"}],
             risk_level=Disease.RiskLevel.MEDIUM,
         )
 
@@ -24,7 +28,9 @@ class DiseaseCatalogTests(APITestCase):
         self.assertEqual(response.data["name"], "Tungro")
 
         self.assertEqual(response.data["symptoms"], ["Gejala 1", "Gejala 2"])
-        self.assertEqual(response.data["treatment_steps"], ["Langkah 1", "Langkah 2"])
+        self.assertEqual(response.data["treatment"], ["Langkah 1", "Langkah 2"])
+        self.assertEqual(response.data["prevention"], ["Cegah 1", "Cegah 2"])
+        self.assertEqual(response.data["sources"], [{"title": "IRRI — Tungro", "url": "http://example.com/tungro"}])
 
     def test_unknown_slug_returns_404(self):
         response = self.client.get("/api/diseases/not-a-real-disease/")

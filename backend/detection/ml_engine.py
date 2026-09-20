@@ -14,7 +14,7 @@ ASSETS_DIR = Path(__file__).parent / "ml_assets"
 _CFG = json.loads((ASSETS_DIR / "preprocess_config.json").read_text())
 _LABELS = json.loads((ASSETS_DIR / "labels.json").read_text())
 _CLASSES = _LABELS["classes"]
-# raw (underscore) label strings
+
 _REJECT_LABELS = set(_LABELS.get("reject_labels", []))
 _CROP_SIZE = _CFG["center_crop"]
 _RESIZE_SHORTER = _CFG["resize_shorter_side_to"]

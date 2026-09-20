@@ -1,37 +1,35 @@
-import riceField from '../../assets/images/rice-field-2.jpg'
-import './AIInfoSection.css'
+import riceField from "../../assets/images/rice-field-2.jpg";
+import "./AIInfoSection.css";
 
 function AIInfoSection() {
   const information = [
     {
-      number: '01',
-      text: 'Model AI menganalisis karakteristik visual pada daun tanaman padi.',
+      number: "01",
+      title: "Arsitektur",
+      text: "Menggunakan Convolutional Neural Network ConvNeXt V2 Tiny.",
     },
     {
-      number: '02',
-      text: 'Sistem membandingkan pola gambar dengan data penyakit yang telah dipelajari.',
+      number: "02",
+      title: "Data Latih",
+      text: "13.185 citra daun padi dari dataset publik yang telah dibersihkan.",
     },
     {
-      number: '03',
-      text: 'Hasil analisis menghasilkan jenis penyakit beserta tingkat confidence.',
+      number: "03",
+      title: "Kelas yang Dikenali",
+      text: "Blast, Bacterial Blight, Brown Spot, Scald, Tungro, dan daun sehat.",
     },
     {
-      number: '04',
-      text: 'Hasil deteksi digunakan untuk memberikan informasi penanganan yang sesuai.',
+      number: "04",
+      title: "Performa",
+      text: "Akurasi 97,02% dan macro F1-score 96,23% pada data uji.",
     },
-  ]
+  ];
 
   return (
-    <section
-      className="ai-section"
-      id="model-ai"
-    >
+    <section className="ai-section" id="model-ai">
       <div className="ai-content">
-
         {/* Section label */}
-        <span className="section-label">
-          Model AI
-        </span>
+        <span className="section-label">Model AI</span>
 
         {/* Section heading */}
         <div className="ai-heading">
@@ -41,31 +39,24 @@ function AIInfoSection() {
         {/* AI information list */}
         <div className="ai-list">
           {information.map((item) => (
-            <div
-              className="ai-item"
-              key={item.number}
-            >
-              <span className="ai-number">
-                {item.number}
-              </span>
+            <div className="ai-item" key={item.number}>
+              <span className="ai-number">{item.number}</span>
 
-              <p>{item.text}</p>
+              <div>
+                <h3 className="ai-item-title">{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
             </div>
           ))}
         </div>
-
       </div>
 
       {/* AI image */}
       <div className="ai-image-wrapper">
-        <img
-          src={riceField}
-          alt="Sawah"
-          className="ai-image"
-        />
+        <img src={riceField} alt="Sawah" className="ai-image" />
       </div>
     </section>
-  )
+  );
 }
 
-export default AIInfoSection
+export default AIInfoSection;

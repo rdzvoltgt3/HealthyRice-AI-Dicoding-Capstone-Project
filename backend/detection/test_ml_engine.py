@@ -26,7 +26,7 @@ class LabelNormalizationTests(TestCase):
 
         for raw_label in _CLASSES:
             if raw_label in _REJECT_LABELS:
-                continue  # reject classes (e.g. not_rice) intentionally have no Disease
+                continue  
             normalized = _normalize_label(raw_label)
             self.assertIn(
                 normalized, db_slugs,
